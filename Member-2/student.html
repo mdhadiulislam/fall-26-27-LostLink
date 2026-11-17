@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Student Dashboard | LostLink</title><link rel="stylesheet" href="css/student.css"></head>
+<body>
+<header class="header"><a class="logo" href="../Member-1/index.html">Lost<span>Link</span></a><div class="user-info"><span class="badge student">Student</span><span>Welcome, Student</span><a class="btn btn-light btn-small" href="../login.html" onclick="logout()">Logout</a></div></header>
+<nav class="topnav"><button id="nav-lostSection" onclick="showSection('lostSection')">My Lost Reports</button><button id="nav-claimsSection" onclick="showSection('claimsSection')">Submit a Claim</button><button id="nav-browseSection" onclick="showSection('browseSection')">Browse Found Items</button>
+<button id="nav-historySection" onclick="showSection('historySection')">My Claim History</button>
+</nav>
+<main class="container">
+<section id="lostSection" class="page-section">
+<h1 class="page-title">My Lost Item Reports</h1><p class="page-subtitle">Create and manage your lost item reports.</p>
+<div class="card"><form class="form inline-form" onsubmit="return saveLostReport()">
+<input type="hidden" id="lostIndex" value="-1">
+<label>Item Name<input id="lostName" required></label><label>Category<select id="lostCategory"><option>Electronics</option><option>Documents</option><option>Bags</option><option>Books</option><option>Accessories</option><option>Other</option></select></label>
+<label>Lost Location<input id="lostLocation" required></label><label>Date Lost<input id="lostDate" type="date" required></label>
+<label>Description<input id="lostDescription" required></label><button class="btn" type="submit">Save Report</button>
+</form><p id="lostMessage" class="message"></p></div>
+<div class="card"><label>Search My Reports<input id="lostSearch" onkeyup="renderLostReports()" placeholder="Search my reports"></label>
+<table><thead><tr><th>Item</th><th>Category</th><th>Location</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="lostTable"></tbody></table></div>
+</section>
+<section id="claimsSection" class="page-section" style="display:none">
+<h1 class="page-title">Submit a Claim</h1><p class="page-subtitle">Choose a found item and explain how you can identify it.</p>
+<div class="card"><form class="form" onsubmit="return submitClaim()"><input type="hidden" id="claimIndex" value="-1">
+<label>Found Item<select id="claimItem"><option value="Black Backpack">Black Backpack</option><option value="Student ID Card">Student ID Card</option><option value="Wireless Earbuds">Wireless Earbuds</option></select></label>
+<label>Proof / Identifying Details<textarea id="claimProof" required></textarea></label><button class="btn" type="submit">Submit Claim</button>
+</form><p id="claimMessage" class="message"></p></div>
+<div class="card"><h3>My Claim Status</h3><label>Search Claims<input id="claimSearch" onkeyup="renderClaims()" placeholder="Search claim records"></label><table><thead><tr><th>Item</th><th>Details</th><th>Status</th><th>Actions</th></tr></thead><tbody id="claimsTable"></tbody></table></div>
+</section>
+<section id="browseSection" class="page-section" style="display:none">
+<h1 class="page-title">Browse Found Items</h1><p class="page-subtitle">Search items reported by university staff and security.</p>
+<div class="feature-banner sage-banner"><div><span class="feature-icon">🔎</span><h3>Find Your Belongings</h3><p>Search the found-item list and submit a claim for an item you recognize.</p></div><strong>Student Feature</strong></div>
+<div class="card"><label>Search Found Items<input id="studentFoundSearch" onkeyup="renderStudentFoundItems()" placeholder="Search by item, category or location"></label>
+<table><thead><tr><th>Item</th><th>Category</th><th>Location</th><th>Status</th><th>Action</th></tr></thead><tbody id="studentFoundTable"></tbody></table></div>
+</section>
+<section id="historySection" class="page-section" style="display:none">
+<h1 class="page-title">My Claim History</h1><p class="page-subtitle">See the status of every claim you have submitted.</p>
+<div class="feature-banner amber-banner"><div><span class="feature-icon">📜</span><h3>Claim History</h3><p>Keep track of pending, approved and rejected claims.</p></div><strong id="studentClaimCount">0 Claims</strong></div>
+<div class="card"><table><thead><tr><th>Item</th><th>Identification Details</th><th>Decision</th></tr></thead><tbody id="claimHistoryTable"></tbody></table></div>
+</section>
+</main>
+<script src="../../shared/js/data.js"></script><script src="../../shared/js/common.js"></script><script src="../../shared/js/auth.js"></script><script>requireRole("Student");</script><script src="js/student.js"></script>
+</body></html>
