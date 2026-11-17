@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>University Staff Dashboard | LostLink</title><link rel="stylesheet" href="css/staff.css"></head>
+<body>
+<header class="header"><a class="logo" href="../Member-1/index.html">Lost<span>Link</span></a><div class="user-info"><span class="badge staff">University Staff</span><span>Welcome, Staff Member</span><a class="btn btn-light btn-small" href="../login.html" onclick="logout()">Logout</a></div></header>
+<nav class="topnav"><button id="nav-foundSection" onclick="showSection('foundSection')">Found Items</button><button id="nav-handoverSection" onclick="showSection('handoverSection')">Handover Records</button><button id="nav-matchingSection" onclick="showSection('matchingSection')">Lost Item Matching</button>
+<button id="nav-summarySection" onclick="showSection('summarySection')">Found Item Summary</button>
+</nav>
+<main class="container">
+<section id="foundSection" class="page-section">
+<h1 class="page-title">Manage Found Items</h1><p class="page-subtitle">Record items found around the university campus.</p>
+<div class="card"><form class="form inline-form" onsubmit="return saveFoundItem()">
+<input type="hidden" id="foundIndex" value="-1">
+<label>Item Name<input id="foundName" required></label><label>Category<select id="foundCategory"><option>Electronics</option><option>Documents</option><option>Bags</option><option>Books</option><option>Accessories</option><option>Other</option></select></label>
+<label>Found Location<input id="foundLocation" required></label><label>Date Found<input id="foundDate" type="date" required></label>
+<label>Current Status<select id="foundStatus"><option>At Staff Office</option><option>Sent to Security</option><option>Returned</option></select></label><button class="btn" type="submit">Save Found Item</button>
+</form><p id="foundMessage" class="message"></p></div>
+<div class="card"><label>Search Found Items<input id="foundSearch" onkeyup="renderFoundItems()" placeholder="Search found items"></label>
+<table><thead><tr><th>Item</th><th>Category</th><th>Location</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="foundTable"></tbody></table></div>
+</section>
+<section id="handoverSection" class="page-section" style="display:none">
+<h1 class="page-title">Item Handover Records</h1><p class="page-subtitle">Record items transferred to the security desk.</p>
+<div class="card"><form class="form inline-form" onsubmit="return saveHandover()">
+<label>Item Name<input id="handoverItem" required></label><label>Received By<input id="handoverPerson" required></label><label>Handover Date<input id="handoverDate" type="date" required></label><button class="btn" type="submit">Add Handover</button>
+</form><p id="handoverMessage" class="message"></p></div>
+<div class="card"><label>Search Handover Records<input id="handoverSearch" onkeyup="renderHandovers()"></label><table><thead><tr><th>Item</th><th>Received By</th><th>Date</th><th>Actions</th></tr></thead><tbody id="handoverTable"></tbody></table></div>
+</section>
+<section id="matchingSection" class="page-section" style="display:none">
+<h1 class="page-title">Lost Item Matching</h1><p class="page-subtitle">Compare lost reports with found items using their category and location.</p>
+<div class="feature-banner sage-banner"><div><span class="feature-icon">🔗</span><h3>Possible Item Matches</h3><p>Use matching suggestions to help students recover belongings.</p></div><strong>Staff Feature</strong></div>
+<div class="card"><table><thead><tr><th>Lost Item</th><th>Lost Location</th><th>Possible Found Item</th><th>Found Location</th></tr></thead><tbody id="matchingTable"></tbody></table></div>
+</section>
+<section id="summarySection" class="page-section" style="display:none">
+<h1 class="page-title">Found Item Summary</h1><p class="page-subtitle">A simple overview of items handled by university staff.</p>
+<div class="grid four">
+<div class="card stat hover-card"><span>Total Found Items</span><strong id="staffTotalFound">0</strong></div>
+<div class="card stat hover-card"><span>At Staff Office</span><strong id="staffAtOffice">0</strong></div>
+<div class="card stat hover-card"><span>Sent to Security</span><strong id="staffSentSecurity">0</strong></div>
+<div class="card stat hover-card"><span>Returned</span><strong id="staffReturned">0</strong></div>
+</div>
+<div class="card"><h3>Item Status Guide</h3><p><span class="badge found">At Staff Office</span> Item is kept with the university staff.</p><p><span class="badge admin">Sent to Security</span> Item has been transferred to security.</p><p><span class="badge student">Returned</span> Item has been handed back to its owner.</p></div>
+</section>
+</main>
+<script src="../../shared/js/data.js"></script><script src="../../shared/js/common.js"></script><script src="../../shared/js/auth.js"></script><script>requireRole("University Staff");</script><script src="js/staff.js"></script>
+</body></html>
