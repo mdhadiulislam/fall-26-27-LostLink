@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Security Dashboard | LostLink</title><link rel="stylesheet" href="css/security.css"></head>
+<body>
+<header class="header"><a class="logo" href="../Member-1/index.html">Lost<span>Link</span></a><div class="user-info"><span class="badge security">Security Officer</span><span>Welcome, Security Officer</span><a class="btn btn-light btn-small" href="../login.html" onclick="logout()">Logout</a></div></header>
+<nav class="topnav"><button id="nav-depositSection" onclick="showSection('depositSection')">Security Desk Register</button><button id="nav-releaseSection" onclick="showSection('releaseSection')">Verify & Release</button><button id="nav-unclaimedSection" onclick="showSection('unclaimedSection')">Unclaimed Items</button>
+<button id="nav-dailySection" onclick="showSection('dailySection')">Daily Desk Summary</button>
+</nav>
+<main class="container">
+<section id="depositSection" class="page-section">
+<h1 class="page-title">Security Desk Register</h1><p class="page-subtitle">Register items deposited at the university security desk.</p>
+<div class="card"><form class="form inline-form" onsubmit="return saveDeposit()">
+<input type="hidden" id="depositIndex" value="-1">
+<label>Item Name<input id="depositName" required></label><label>Item Description<input id="depositDescription" required></label>
+<label>Deposited By<input id="depositBy" required></label><label>Deposit Date<input id="depositDate" type="date" required></label>
+<button class="btn" type="submit">Save Deposit</button></form><p id="depositMessage" class="message"></p></div>
+<div class="card"><label>Search Desk Register<input id="depositSearch" onkeyup="renderDeposits()"></label><table><thead><tr><th>Item</th><th>Description</th><th>Deposited By</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="depositTable"></tbody></table></div>
+</section>
+<section id="releaseSection" class="page-section" style="display:none">
+<h1 class="page-title">Verify & Release Item</h1><p class="page-subtitle">Check claimant details and update the item release status.</p>
+<div class="card"><form class="form inline-form" onsubmit="return saveRelease()">
+<label>Item Name<input id="releaseName" required></label><label>Claimant Name<input id="releaseClaimant" required></label>
+<label>Verification Note<input id="releaseProof" required></label><label>Status<select id="releaseStatus"><option>Verified - Released</option><option>Waiting for Verification</option><option>Claim Rejected</option></select></label>
+<button class="btn" type="submit">Save Verification</button></form><p id="releaseMessage" class="message"></p></div>
+<div class="card"><h3>Release Records</h3><table><thead><tr><th>Item</th><th>Claimant</th><th>Verification</th><th>Status</th><th>Actions</th></tr></thead><tbody id="releaseTable"></tbody></table></div>
+</section>
+<section id="unclaimedSection" class="page-section" style="display:none">
+<h1 class="page-title">Unclaimed Items</h1><p class="page-subtitle">Items currently stored at the security desk and waiting for collection.</p>
+<div class="feature-banner amber-banner"><div><span class="feature-icon">📦</span><h3>Collection Waiting List</h3><p>Check stored items before a student visits the desk.</p></div><strong id="unclaimedCount">0 Items</strong></div>
+<div class="card"><label>Search Unclaimed Items<input id="unclaimedSearch" onkeyup="renderUnclaimed()" placeholder="Search item or depositor"></label>
+<table><thead><tr><th>Item</th><th>Description</th><th>Deposited By</th><th>Date</th><th>Status</th></tr></thead><tbody id="unclaimedTable"></tbody></table></div>
+</section>
+<section id="dailySection" class="page-section" style="display:none">
+<h1 class="page-title">Daily Desk Summary</h1><p class="page-subtitle">Review the security desk's deposit and release records.</p>
+<div class="feature-banner sage-banner"><div><span class="feature-icon">📊</span><h3>Security Desk Overview</h3><p>Quick totals based on the sample desk records.</p></div><strong>Daily Summary</strong></div>
+<div class="grid three">
+<div class="card stat hover-card"><span>Total Deposits</span><strong id="securityDeposits">0</strong></div>
+<div class="card stat hover-card"><span>Items Released</span><strong id="securityReleased">0</strong></div>
+<div class="card stat hover-card"><span>Waiting for Collection</span><strong id="securityWaiting">0</strong></div>
+</div>
+<div class="card"><h3>Recent Release Records</h3><table><thead><tr><th>Item</th><th>Claimant</th><th>Status</th></tr></thead><tbody id="dailyReleaseTable"></tbody></table></div>
+</section>
+</main>
+<script src="../../shared/js/data.js"></script><script src="../../shared/js/common.js"></script><script src="../../shared/js/auth.js"></script><script>requireRole("Security Officer");</script><script src="js/security.js"></script>
+</body></html>
