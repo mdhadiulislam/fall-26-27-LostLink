@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | LostLink</title>
+  <link rel="stylesheet" href="shared/css/common.css">
+</head>
+<body>
+  <header class="header"><a class="logo" href="Member-1/index.html">Lost<span>Link</span></a><a class="btn btn-light" href="Member-1/index.html">Home</a></header>
+  <main class="form-container">
+    <h1 class="page-title">Login to LostLink</h1>
+    <p class="page-subtitle">One login page for all four user roles.</p>
+    <form class="card form" onsubmit="return validateLogin()">
+      <label>Username or Email<input type="text" id="username" placeholder="Enter username" required></label><span class="error" id="usernameError"></span>
+      <label>Password<input type="password" id="password" placeholder="Enter password" required></label><span class="error" id="passwordError"></span>
+      <button class="btn btn-block" type="submit">Login</button>
+      <p id="loginMessage" class="message"></p>
+    </form>
+    <div class="card demo-box">
+      <h3>Demo Accounts</h3>
+      <p class="demo-help">Click Use to fill the username and password automatically.</p>
+      <div class="demo-account">
+        <div><b>Admin</b><small>admin / admin123</small></div>
+        <button class="btn btn-small use-button" type="button" onclick="useAccount('admin', 'admin123')">Use</button>
+      </div>
+      <div class="demo-account">
+        <div><b>Student</b><small>student / student123</small></div>
+        <button class="btn btn-small use-button" type="button" onclick="useAccount('student', 'student123')">Use</button>
+      </div>
+      <div class="demo-account">
+        <div><b>University Staff</b><small>staff / staff123</small></div>
+        <button class="btn btn-small use-button" type="button" onclick="useAccount('staff', 'staff123')">Use</button>
+      </div>
+      <div class="demo-account">
+        <div><b>Security Officer</b><small>security / security123</small></div>
+        <button class="btn btn-small use-button" type="button" onclick="useAccount('security', 'security123')">Use</button>
+      </div>
+      <a href="register.html">Create a student, staff or security account</a>
+    </div>
+  </main>
+  <script src="shared/js/data.js"></script>
+  <script src="shared/js/common.js"></script>
+  <script src="shared/js/login.js"></script>
+</body>
+</html>

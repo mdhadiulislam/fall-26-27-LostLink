@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | LostLink</title>
+  <link rel="stylesheet" href="shared/css/common.css">
+</head>
+<body>
+  <header class="header"><a class="logo" href="Member-1/index.html">Lost<span>Link</span></a><a class="btn btn-light" href="login.html">Login</a></header>
+  <main class="form-container">
+    <h1 class="page-title">Create an Account</h1>
+    <p class="page-subtitle">Admin accounts are created by the system administrator.</p>
+    <form id="registerForm" class="card form" onsubmit="return validateRegister()">
+      <label>Account Type
+        <select id="role" onchange="showRoleFields()">
+          <option value="Student">Student</option>
+          <option value="University Staff">University Staff</option>
+          <option value="Security Officer">Security Officer</option>
+        </select>
+      </label>
+      <label>Full Name<input id="fullName" type="text" placeholder="Your full name" required></label><span class="error" id="fullNameError"></span>
+      <label>Email<input id="email" type="email" placeholder="name@example.com" required></label><span class="error" id="emailError"></span>
+      <label>Username<input id="newUsername" type="text" placeholder="Choose a username" required></label><span class="error" id="newUsernameError"></span>
+      <label>Password<input id="newPassword" type="password" placeholder="At least 6 characters" required minlength="6"></label><span class="error" id="newPasswordError"></span>
+      <div id="studentFields"><label>Student ID<input id="studentId" type="text" placeholder="23-XXXXX-X" required></label></div>
+      <div id="staffFields" style="display:none"><label>Employee ID<input id="employeeId" type="text" placeholder="EMP-1001" required></label></div>
+      <div id="securityFields" style="display:none"><label>Security ID<input id="securityId" type="text" placeholder="SEC-1001" required></label></div>
+      <button class="btn btn-block" type="submit">Create Account</button>
+      <p id="registerMessage" class="message"></p>
+    </form>
+  </main>
+  <script src="shared/js/data.js"></script>
+  <script src="shared/js/common.js"></script>
+  <script src="shared/js/register.js"></script>
+</body>
+</html>
